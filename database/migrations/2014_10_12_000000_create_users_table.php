@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('nom');
             $table->string('prenom');
-            $table->string('email_userName')->unique();
+            $table->string('email')->unique();
             $table->date('datedeNaissance');
             $table->string('telephone');
-            $table->boolean('estArchive');
+            $table->boolean('estArchive')->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
