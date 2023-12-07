@@ -24,3 +24,5 @@ Route::post('/notifications/create/{id}', [NotificationController::class, 'Creer
 Route::get('/notifications', [NotificationController::class, 'ListeNotification']);
 
 Route::get('/notifications/count', [NotificationController::class, 'NombreNotifications']);
+
+Route::get('/SupprimeNotification', [NotificationController::class, 'destroy']);

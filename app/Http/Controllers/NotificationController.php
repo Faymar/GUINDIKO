@@ -5,22 +5,22 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreNotificationRequest;
 use App\Http\Requests\UpdateNotificationRequest;
 use App\Models\Notification;
-use GuzzleHttp\Psr7\Request;
-use Illuminate\Http\Request as HttpRequest;
+use Illuminate\Http\Request;
+
 
 class NotificationController extends Controller
 {
 
-    public function CreerNotification(HttpRequest $request, $id)
+    public function CreerNotification(Request $request, $id)
     {
 
-        // dd($request);
+       // dd($request);
         $request->validate([
-            'contenue' => 'required',
+            'contenu' => 'required',
         ]);
        
         $Notification= new Notification([
-            'contenue' => $request->input('contenue'),
+            'contenu' => $request->input('contenu'),
             'user_id' => $id
         ]);
       
@@ -40,13 +40,18 @@ class NotificationController extends Controller
     public function NombreNotifications()
     {
         $unreadNotificationsCount = count(Notification::where('user_id', auth()->user()->id)
-            ->where('lu', false)->get());
+            ->where('estlu', false)->get());
             return response()->json($unreadNotificationsCount);
 
         }
 
 
-
+        public function destroy(Notification $notification)
+        {
+            $notification->estArchive = true;
+            $notification->update();
+            return response()->json('notification supprimée');
+        }
 
 
 
