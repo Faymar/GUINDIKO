@@ -12,12 +12,12 @@ class Article extends Model
     use HasFactory;
 
 
-    public function mentorArticle(): BelongsTo
-    {
+    // public function mentorArticle(): BelongsTo
+    // {
 
 
-        return $this->belongsTo(User::class);
-    }
+    //     return $this->belongsTo(User::class);
+    // }
 
     // public function comment(): HasMany
     // {
