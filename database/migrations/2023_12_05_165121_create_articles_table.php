@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('contenu');
             $table->string('image')->nullable();
             $table->integer('nombreClique')->default(0);
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->boolean('estArchive')->default(false);
             $table->timestamps();
         });
