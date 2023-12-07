@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('tache');
             $table->date('dateDebut')->nullable();
             $table->date('datefin')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->boolean('estArchive')->default(false);
             $table->timestamps();
         });

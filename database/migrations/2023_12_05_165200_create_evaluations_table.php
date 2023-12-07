@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->integer('note');
             $table->string('message')->nullable();
+            $table->unsignedBigInteger('userMentor_id');
+            $table->foreign('userMentor_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('userMentore_id');
+            $table->foreign('userMentore_id')->references('id')->on('users')->onDelete('cascade');
             $table->boolean('estArchive')->default(false);
             $table->timestamps();
         });
