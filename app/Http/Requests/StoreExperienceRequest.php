@@ -11,7 +11,7 @@ class StoreExperienceRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class StoreExperienceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'titre'=>'requiered|string',
+            'description'=>'nullable|string',
+            'entreprise'=>'nullable|string',
+            'tache'=>'requiered|string',
+            'dateDebut'=>'nullable|date',
+            'dateFin'=>'nullable|date',
+            'estArchive'=>'boolean',
         ];
     }
 }

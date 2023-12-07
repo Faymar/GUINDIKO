@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('libele');
             $table->string('fichier')->nullable();
             $table->string('description')->nullable();
-            $table->date('dateOptenue');
+            $table->date('dateObtention');
             $table->boolean('estArchive')->default(false);
             $table->timestamps();
         });
