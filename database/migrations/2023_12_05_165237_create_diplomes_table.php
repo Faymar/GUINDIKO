@@ -16,11 +16,14 @@ return new class extends Migration
             $table->string('libele');
             $table->string('fichier')->nullable();
             $table->string('description')->nullable();
-            $table->date('dateOptenue');
+            $table->date('dateObtention');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->boolean('estArchive')->default(false);
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

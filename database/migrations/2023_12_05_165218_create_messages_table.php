@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('contenu');
             $table->string('fichier')->nullable();
+            $table->unsignedBigInteger('userEnv_id');
+            $table->foreign('userEnv_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('userRec_id');
+            $table->foreign('userRec_id')->references('id')->on('users')->onDelete('cascade');
             $table->boolean('estArchive')->default(false);
             $table->timestamps();
         });
