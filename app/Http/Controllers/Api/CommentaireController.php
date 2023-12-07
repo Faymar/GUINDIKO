@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCommentaireRequest;
 use App\Http\Requests\UpdateCommentaireRequest;
 use App\Models\Commentaire;
@@ -29,7 +30,11 @@ class CommentaireController extends Controller
      */
     public function store(StoreCommentaireRequest $request)
     {
-        //
+        $commentaire = new Commentaire();
+        ($request->validated($request->all()));
+        $commentaire->contenu = $request->contenu;
+        $commentaire->save();
+        return response()->json($commentaire);
     }
 
     /**
@@ -53,7 +58,9 @@ class CommentaireController extends Controller
      */
     public function update(UpdateCommentaireRequest $request, Commentaire $commentaire)
     {
-        //
+        ($request->validated($request->all()));
+        $commentaire->update($request->all());
+        return response()->json($commentaire);
     }
 
     /**
@@ -61,6 +68,8 @@ class CommentaireController extends Controller
      */
     public function destroy(Commentaire $commentaire)
     {
-        //
+        $commentaire->estArchive = true;
+        $commentaire->update();
+        return response()->json('Commentaire supprimé');
     }
 }

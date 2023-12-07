@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Article;
+use App\Models\Commentaire;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,6 +23,8 @@ return new class extends Migration
             $table->boolean('estArchive');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            // $table->foreignIdFor(Article::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            // $table->foreignIdFor(Commentaire::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->rememberToken();
             $table->timestamps();
         });
