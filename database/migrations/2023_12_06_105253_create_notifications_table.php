@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('contenu');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->boolean('estLu')->default(false);
             $table->boolean('estArchive')->default(false);
             $table->timestamps();
         });

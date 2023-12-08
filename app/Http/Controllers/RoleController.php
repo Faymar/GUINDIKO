@@ -13,23 +13,22 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Role::where('estArchive', false)->get());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreRoleRequest $request)
     {
-        //
+        $request->validated($request->all());
+
+        $role = new Role();
+        $role->nomRole = $request->input('nomRole');
+        $role->save();
+
+        return response()->json($role);
     }
 
     /**
@@ -37,23 +36,21 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        return response()->json($role);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Role $role)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(UpdateRoleRequest $request, Role $role)
     {
-        //
+        $request->validated($request->all());
+
+        $role->nomRole = $request->input('nomRole');
+        $role->update();
+
+        return response()->json($role);
     }
 
     /**
@@ -61,6 +58,9 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $role->estArchive = true;
+        $role->update();
+
+        return response()->json($role);
     }
 }

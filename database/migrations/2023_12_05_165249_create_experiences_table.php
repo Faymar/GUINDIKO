@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('titre');
             $table->string('description')->nullable();
             $table->string('entreprise')->nullable();
+            $table->string('fichier')->nullable();
             $table->string('tache');
             $table->date('dateDebut')->nullable();
             $table->date('datefin')->nullable();

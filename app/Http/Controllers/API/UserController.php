@@ -17,10 +17,10 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        // $request->validate([
-        //     'email' => 'required|string|email',
-        //     'password' => 'required|string',
-        // ]);
+        $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string',
+        ]);
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
@@ -40,12 +40,18 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
-        // $request->validate([
-        //     'nom' => 'required|string|max:255',
-        //     'prenom' => 'required|string|max:255',
-        //     'email' => 'required|string|email|max:255|unique:users',
-        //     'password' => 'required|string|min:6',
-        // ]);
+        if (preg_match('/[@]/', $request->email)) {
+            $eamil_userNameValidator  = 'required|string|email|max:255|unique:users';
+        } else {
+            $eamil_userNameValidator  = 'required|string|max:10|unique:users';
+        }
+
+        $request->validate([
+            'nom' => 'required|string|max:255',
+            'prenom' => 'required|string|max:255',
+            'email' => $eamil_userNameValidator,
+            'password' => 'required|string|min:6',
+        ]);
 
         $user = User::create([
             'nom' => $request->nom,
@@ -54,17 +60,19 @@ class UserController extends Controller
             'datedeNaissance' => $request->datedeNaissance,
             'telephone' => $request->telephone,
             'password' => Hash::make($request->password),
+            'role_id' => $request->role_id,
+            'domaine_id' => $request->domaine_id,
         ]);
 
         return response()->json([
-            'message' => 'User created successfully',
+            'message' => 'Compte créer',
             'user' => $user
         ]);
     }
 
     public function logout()
     {
-        // Auth::user()->tokens()->delete();
+        Auth::user()->tokens()->delete();
         return response()->json([
             'message' => 'Successfully logged out',
         ]);

@@ -13,23 +13,22 @@ class DomaineController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Domaine::where('estArchive', false)->get());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreDomaineRequest $request)
     {
-        //
+        $request->validated($request->all());
+        $domaine = new Domaine();
+        $domaine->nomDomaine = $request->input('nomDomaine');
+        $domaine->description = $request->input('description');
+        $domaine->save();
+
+        return response()->json($domaine);
     }
 
     /**
@@ -37,23 +36,21 @@ class DomaineController extends Controller
      */
     public function show(Domaine $domaine)
     {
-        //
+        return response()->json($domaine);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Domaine $domaine)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(UpdateDomaineRequest $request, Domaine $domaine)
     {
-        //
+        $request->validated($request->all());
+        $domaine->nomDomaine = $request->input('nomDomaine');
+        $domaine->description = $request->input('description');
+        $domaine->update();
+
+        return response()->json($domaine);
     }
 
     /**
@@ -61,6 +58,9 @@ class DomaineController extends Controller
      */
     public function destroy(Domaine $domaine)
     {
-        //
+        $domaine->estArchive = true;
+        $domaine->update();
+
+        return response()->json($domaine);
     }
 }
