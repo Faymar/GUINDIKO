@@ -1,2 +1,0 @@
-Formulaire d'article :
-
