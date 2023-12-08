@@ -12,4 +12,5 @@ class Diplome extends Model
     {
         return $this->belongsTo(User::class);
     }
+    protected $guarded = [];
 }

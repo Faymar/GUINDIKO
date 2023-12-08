@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Api\ArticleController;
-use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\CommentaireController;
+use App\Http\Controllers\DiplomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +33,12 @@ Route::put('/comment/delete/{commentaire}', [CommentaireController::class, 'dest
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+//Route for Diplomes
+Route::post('ajouterDiplome',[DiplomeController::class,'store']);
+Route::get('listerDiplomes', [DiplomeController::class,'index']);
+Route::get('afficherDiplome/{id}',[DiplomeController::class,'show']);
+Route::patch('modifierDiplome/{id}', [DiplomeController::class,'update']);
+Route::patch('supprimerDiplome/{id}', [DiplomeController::class,'destroy']);
 
 Route::post('/notifications/create/{id}', [NotificationController::class, 'CreerNotification']);
 

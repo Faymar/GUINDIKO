@@ -11,7 +11,7 @@ class UpdateDiplomeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class UpdateDiplomeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'libele'=>'required|string',
+            // 'fichier'=>'nullable|mimes:pdf,doc,docx,png,jpeg,jpg',
+            'description'=>'nullable|string',
+            'dateObtention'=>'required|date',
+            
         ];
     }
 }

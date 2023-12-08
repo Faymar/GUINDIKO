@@ -29,7 +29,8 @@ class ExperienceController extends Controller
      */
     public function store(StoreExperienceRequest $request)
     {
-        //
+        $experience = Experience::create($request->validated());
+        return ;
     }
 
     /**
