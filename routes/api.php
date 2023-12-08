@@ -34,11 +34,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 //Route for Diplomes
-Route::post('ajouterDiplome',[DiplomeController::class,'store']);
-Route::get('listerDiplomes', [DiplomeController::class,'index']);
-Route::get('afficherDiplome/{id}',[DiplomeController::class,'show']);
-Route::patch('modifierDiplome/{id}', [DiplomeController::class,'update']);
-Route::patch('supprimerDiplome/{id}', [DiplomeController::class,'destroy']);
+Route::post('ajouterDiplome', [DiplomeController::class, 'store']);
+Route::get('listerDiplomes', [DiplomeController::class, 'index']);
+Route::get('afficherDiplome/{id}', [DiplomeController::class, 'show']);
+Route::patch('modifierDiplome/{id}', [DiplomeController::class, 'update']);
+Route::patch('supprimerDiplome/{id}', [DiplomeController::class, 'destroy']);
 
 Route::post('/notifications/create/{id}', [NotificationController::class, 'CreerNotification']);
 
