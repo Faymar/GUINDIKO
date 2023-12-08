@@ -4,6 +4,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\CommentaireController;
 use App\Http\Controllers\DiplomeController;
+use App\Http\Controllers\SousDomaineController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -47,3 +48,11 @@ Route::get('/notifications', [NotificationController::class, 'ListeNotification'
 Route::get('/notifications/count', [NotificationController::class, 'NombreNotifications']);
 
 Route::get('/SupprimeNotification', [NotificationController::class, 'destroy']);
+
+//Route For SousDomaine managament
+
+Route::post('ajouterSousDomaine',[SousDomaineController::class,'store']);
+Route::get('listerSousDomaine', [SousDomaineController::class,'index']);
+Route::get('afficherSousDomaine/{sousdomaine}',[SousDomaineController::class,'show']);
+Route::patch('modifierSousDomaine/{sousdomaine}', [SousDomaineController::class,'update']);
+Route::patch('supprimerSousDomaine/{sousdomaine}', [SousDomaineController::class,'destroy']);
