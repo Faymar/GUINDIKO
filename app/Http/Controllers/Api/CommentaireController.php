@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCommentaireRequest;
 use App\Http\Requests\UpdateCommentaireRequest;
 use App\Models\Commentaire;
+use Illuminate\Support\Facades\Auth;
 
 class CommentaireController extends Controller
 {

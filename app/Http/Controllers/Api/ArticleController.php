@@ -47,6 +47,7 @@ class ArticleController extends Controller
         ($request->validated($request->all()));
         $article->titre = $request->titre;
         $article->contenu = $request->contenu;
+        $article->domaine = $request->domaine;
         // $article->image = $request->image;
         // $article->nombreClique = $request->nombreClique;
         // $article->estArchive = $request->estArchive;

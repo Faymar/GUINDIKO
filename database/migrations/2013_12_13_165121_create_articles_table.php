@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('titre');
             $table->string('contenu');
+            $table->string('domaine');
             $table->string('image')->nullable();
             $table->integer('nombreClique')->default(0);
             $table->unsignedBigInteger('user_id');

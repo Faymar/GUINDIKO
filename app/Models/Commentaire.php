@@ -12,10 +12,10 @@ class Commentaire extends Model
     use HasFactory;
 
 
-    // public function article(): BelongsTo
-    // {
-    //     return $this->belongsTo(Article::class);
-    // }
+    public function article(): BelongsTo
+    {
+        return $this->belongsTo(Article::class);
+    }
 
     protected $fillable = [
         'contenu',
