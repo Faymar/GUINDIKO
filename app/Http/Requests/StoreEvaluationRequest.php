@@ -11,7 +11,7 @@ class StoreEvaluationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreEvaluationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'note' => ['required', 'integer', 'max:5', 'min:1'],
+            'message' => ['required', 'string', 'max:100']
         ];
     }
 }

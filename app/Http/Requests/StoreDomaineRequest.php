@@ -11,7 +11,7 @@ class StoreDomaineRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreDomaineRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nomDomaine' => ['required', 'string', 'max:30'],
+            'description' => ['required', 'string', 'max:250']
         ];
     }
 }
