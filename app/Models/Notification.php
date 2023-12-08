@@ -12,11 +12,11 @@ class Notification extends Model
         'contenu',
         'estlu',
         'user_id',
-        'estArchive'];
+        'estArchive'
+    ];
     public function user()
     {
         return $this->belongsTo(User::class);
     }
     use HasFactory;
-
 }
