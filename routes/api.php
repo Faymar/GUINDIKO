@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\CommentaireController;
@@ -32,3 +33,11 @@ Route::put('/comment/delete/{commentaire}', [CommentaireController::class, 'dest
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/notifications/create/{id}', [NotificationController::class, 'CreerNotification']);
+
+Route::get('/notifications', [NotificationController::class, 'ListeNotification']);
+
+Route::get('/notifications/count', [NotificationController::class, 'NombreNotifications']);
+
+Route::get('/SupprimeNotification', [NotificationController::class, 'destroy']);
