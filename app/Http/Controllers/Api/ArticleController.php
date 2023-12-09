@@ -6,7 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
+use OpenApi\Annotations as OA;
 use Symfony\Contracts\Service\Attribute\Required;
+
+/**
+ * @OA\Info(title="API Article", version="0.1")
+ */
 
 class ArticleController extends Controller
 {
@@ -30,7 +35,11 @@ class ArticleController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *     path="/api/posts/ajout",
+     *     summary="pour enregistrer un article",
+     *     @OA\Response(response="201", description="succes")
+     * )
      */
     public function store(StoreArticleRequest $request)
     {
@@ -74,6 +83,15 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
+    /**
+     * @OA\Put(
+     *     path="/api/put/update/{article}",
+     *     summary="pour modifier un article",
+     *     @OA\Response(response="201", description="succes")
+     * )
+     */
+
     public function update(UpdateArticleRequest $request, Article $article)
     {
         $request->validated($request->all());
@@ -85,6 +103,15 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
+    /**
+     * @OA\Put(
+     *     path="/api/delete/{article}",
+     *     summary="pour supprimer un article",
+     *     @OA\Response(response="201", description="succes")
+     * )
+     */
+
     public function destroy(Article $article)
     {
         $article->estArchive = true;

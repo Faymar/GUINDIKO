@@ -1,0 +1,42 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Article",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/posts/ajout": {
+            "post": {
+                "summary": "pour enregistrer un article",
+                "operationId": "ee2985b7ae1ed3ba8fafa04af731152a",
+                "responses": {
+                    "201": {
+                        "description": "succes"
+                    }
+                }
+            }
+        },
+        "/api/put/update/{article}": {
+            "put": {
+                "summary": "pour modifier un article",
+                "operationId": "74c597001743507235f00de31dd26c9b",
+                "responses": {
+                    "201": {
+                        "description": "succes"
+                    }
+                }
+            }
+        },
+        "/api/delete/{article}": {
+            "put": {
+                "summary": "pour supprimer un article",
+                "operationId": "10f59af103040c6d70a40bed2948e92a",
+                "responses": {
+                    "201": {
+                        "description": "succes"
+                    }
+                }
+            }
+        }
+    }
+}

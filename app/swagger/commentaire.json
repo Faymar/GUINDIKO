@@ -1,0 +1,42 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Commentaire",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/comment/ajouter": {
+            "post": {
+                "summary": "pour enregistrer un commentaire",
+                "operationId": "af062a433d506dc890a191d04dc47716",
+                "responses": {
+                    "201": {
+                        "description": "succes"
+                    }
+                }
+            }
+        },
+        "/api/comment/modif/{commentaire}": {
+            "put": {
+                "summary": "pour modifier un commentaire",
+                "operationId": "e2fefb273d4912012543db2c53bb309c",
+                "responses": {
+                    "201": {
+                        "description": "succes"
+                    }
+                }
+            }
+        },
+        "/api/comment/delete/{commentaire}": {
+            "put": {
+                "summary": "pour supprimer un commentaire",
+                "operationId": "0951d1c1de0d8e514e9c743c4f925842",
+                "responses": {
+                    "201": {
+                        "description": "succes"
+                    }
+                }
+            }
+        }
+    }
+}

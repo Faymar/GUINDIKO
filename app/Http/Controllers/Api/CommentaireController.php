@@ -8,6 +8,10 @@ use App\Http\Requests\UpdateCommentaireRequest;
 use App\Models\Commentaire;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * @OA\Info(title="API Commentaire", version="0.1")
+ */
+
 class CommentaireController extends Controller
 {
     /**
@@ -25,9 +29,16 @@ class CommentaireController extends Controller
     {
         //
     }
+    /**
+     * Show the form for creating a new resource.
+     */
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *     path="/api/comment/ajouter",
+     *     summary="pour enregistrer un commentaire",
+     *     @OA\Response(response="201", description="succes")
+     * )
      */
     public function store(StoreCommentaireRequest $request)
     {
@@ -57,6 +68,15 @@ class CommentaireController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
+
+    /**
+     * @OA\Put(
+     *     path="/api/comment/modif/{commentaire}",
+     *     summary="pour modifier un commentaire",
+     *     @OA\Response(response="201", description="succes")
+     * )
+     */
     public function update(UpdateCommentaireRequest $request, Commentaire $commentaire)
     {
         ($request->validated($request->all()));
@@ -66,6 +86,16 @@ class CommentaireController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     */
+
+
+
+    /**
+     * @OA\Put(
+     *     path="/api/comment/delete/{commentaire}",
+     *     summary="pour supprimer un commentaire",
+     *     @OA\Response(response="201", description="succes")
+     * )
      */
     public function destroy(Commentaire $commentaire)
     {

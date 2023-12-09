@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/ajouter', [ArticleController::class, 'create']);
 Route::get('/api', [ArticleController::class, 'index']);
 Route::post('/posts/ajout', [ArticleController::class, 'store']);
-Route::put('/put/update/{article}', [ArticleController::class, 'store']);
+Route::put('/put/update/{article}', [ArticleController::class, 'update']);
 Route::put('/delete/{article}', [ArticleController::class, 'destroy']);
 
 Route::post('/comment/ajouter', [CommentaireController::class, 'store']);
