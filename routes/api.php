@@ -27,23 +27,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/ajouter', [ArticleController::class, 'create']);
-Route::get('/api', [ArticleController::class, 'index']);
-Route::post('/posts/ajout', [ArticleController::class, 'store']);
-Route::put('/put/update/{article}', [ArticleController::class, 'store']);
-Route::put('/delete/{article}', [ArticleController::class, 'destroy']);
-
-Route::post('/comment/ajouter', [CommentaireController::class, 'store']);
-Route::put('/comment/modif/{commentaire}', [CommentaireController::class, 'update']);
-Route::put('/comment/delete/{commentaire}', [CommentaireController::class, 'destroy']);
-
-
-
-// Route::middleware('auth:sanctum', 'estMentor')->get('/teste', function (Request $request) {
-//     $user = Auth::user()->role()->first();
-//     dd($user->nomRole);
-//     // dd(Auth::check());
-// });
+Route::middleware('auth:sanctum', 'estMentor')->get('/teste', function (Request $request) {
+    $user = Auth::user()->id;
+    dd($user->nomRole);
+    // dd(Auth::check());
+});
 
 Route::post('/register',  [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
@@ -59,15 +47,15 @@ Route::patch('/modifierRoles/{role}', [RoleController::class, 'update']);
 Route::patch('/supprimerRoles/{role}', [RoleController::class, 'destroy']);
 
 
+Route::post('/ajouterDomaine', [DomaineController::class, 'store']);
 Route::get('/listerDomaine', [DomaineController::class, 'index']);
 Route::get('/voirDomaine/{domaine}', [DomaineController::class, 'show']);
-Route::post('/ajouterDomaine', [DomaineController::class, 'store']);
 Route::patch('/modifierDomaine/{domaine}', [DomaineController::class, 'update']);
 Route::patch('/supprimerDomaine/{domaine}', [DomaineController::class, 'destroy']);
 
+Route::post('/ajouterExperience', [ExperienceController::class, 'store'])->middleware('auth:sanctum');
 Route::get('/listerExperience', [ExperienceController::class, 'index']);
 Route::get('/voirExperience/{experience}', [ExperienceController::class, 'show']);
-Route::post('/ajouterExperience', [ExperienceController::class, 'store'])->middleware('auth:sanctum');
 Route::patch('/modifierExperience/{experience}', [ExperienceController::class, 'update']);
 Route::patch('/supprimerExperience/{experience}', [ExperienceController::class, 'destroy']);
 
@@ -84,24 +72,34 @@ Route::get('/VoirDemande/{demande}', [DemandeController::class, 'show']); //ment
 Route::patch('/accepteDemande/{demande}', [DemandeController::class, 'accepteDemande']); //mentore
 Route::patch('/refuserDemande/{demande}', [DemandeController::class, 'refuserDemande']); //mentore
 //Route for Diplomes
-Route::post('ajouterDiplome', [DiplomeController::class, 'store']);
-Route::get('listerDiplomes', [DiplomeController::class, 'index']);
-Route::get('afficherDiplome/{id}', [DiplomeController::class, 'show']);
-Route::patch('modifierDiplome/{id}', [DiplomeController::class, 'update']);
-Route::patch('supprimerDiplome/{id}', [DiplomeController::class, 'destroy']);
+Route::post('/ajouterDiplome', [DiplomeController::class, 'store'])->middleware('auth:sanctum');
+Route::get('/listerDiplomes', [DiplomeController::class, 'index']);
+Route::get('/afficherDiplome/{id}', [DiplomeController::class, 'show']);
+Route::patch('/modifierDiplome/{diplome}', [DiplomeController::class, 'update']);
+Route::patch('/supprimerDiplome/{diplome}', [DiplomeController::class, 'destroy']);
 
 Route::post('/notifications/create/{id}', [NotificationController::class, 'CreerNotification']);
-
-Route::get('/notifications', [NotificationController::class, 'ListeNotification']);
-
-Route::get('/notifications/count', [NotificationController::class, 'NombreNotifications']);
-
-Route::get('/SupprimeNotification', [NotificationController::class, 'destroy']);
+Route::get('/listeNotification', [NotificationController::class, 'ListeNotification'])->middleware('auth:sanctum');
+Route::get('/notifications/count', [NotificationController::class, 'NombreNotifications'])->middleware('auth:sanctum');
+Route::get('/supprimeNotification/{notification}', [NotificationController::class, 'destroy']);
 
 //Route For SousDomaine managament
+Route::post('/ajouterSousDomaine', [SousDomaineController::class, 'store']);
+Route::get('/listerSousDomaine', [SousDomaineController::class, 'index']);
+Route::get('/afficherSousDomaine/{sousdomaine}', [SousDomaineController::class, 'show']);
+Route::patch('/modifierSousDomaine/{sousdomaine}', [SousDomaineController::class, 'update']);
+Route::patch('/supprimerSousDomaine/{sousdomaine}', [SousDomaineController::class, 'destroy']);
 
-Route::post('ajouterSousDomaine',[SousDomaineController::class,'store']);
-Route::get('listerSousDomaine', [SousDomaineController::class,'index']);
-Route::get('afficherSousDomaine/{sousdomaine}',[SousDomaineController::class,'show']);
-Route::patch('modifierSousDomaine/{sousdomaine}', [SousDomaineController::class,'update']);
-Route::patch('supprimerSousDomaine/{sousdomaine}', [SousDomaineController::class,'destroy']);
+Route::post('/ajouterArticle', [ArticleController::class, 'store'])->middleware('auth:sanctum');
+Route::get('/listerArticles', [ArticleController::class, 'index']);
+Route::get('/mentor/listerArticles', [ArticleController::class, 'articleMentore'])->middleware('auth:sanctum');
+Route::get('/voirArticles/{article}', [ArticleController::class, 'show']);
+Route::patch('/modifierArticles/{article}', [ArticleController::class, 'update']);
+Route::patch('/supprimerArticles/{article}', [ArticleController::class, 'destroy']);
+
+Route::get('/listerCommentaire', [CommentaireController::class, 'index']);
+Route::post('/commentaire/ajouter/{id}', [CommentaireController::class, 'store'])->middleware('auth:sanctum');
+Route::get('/article/listerCommentaire/{id}', [CommentaireController::class, 'ArticleListeCommt']);
+Route::patch('/voirCommentaire/{commentaire}', [CommentaireController::class, 'show']);
+Route::patch('/modifierCommentaire/{commentaire}', [CommentaireController::class, 'update']);
+Route::patch('/supprimerCommentaire/{commentaire}', [CommentaireController::class, 'destroy']);

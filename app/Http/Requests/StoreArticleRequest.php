@@ -19,12 +19,13 @@ class StoreArticleRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules($request): array
+    public function rules(): array
     {
         return [
-            'titre' => 'required',
-            'contenu' => 'required',
-            // 'image' => 'required',
+            'titre' => 'required|string|min:5|max:50',
+            'domaine' => 'required|string|max:50',
+            'contenu' => 'required|string|min:10|max:500',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ];
     }
 }

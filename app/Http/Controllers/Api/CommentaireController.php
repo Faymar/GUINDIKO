@@ -15,25 +15,29 @@ class CommentaireController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Commentaire::where('estArchive', false)->get());
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function ArticleListeCommt($id)
     {
-        //
+        return response()->json(
+            Commentaire::where('estArchive', false)
+                ->where('article_id', $id)
+                ->get()
+        );
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCommentaireRequest $request)
+    public function store(StoreCommentaireRequest $request, $id)
     {
+        $request->validated($request->all());
+
         $commentaire = new Commentaire();
-        ($request->validated($request->all()));
         $commentaire->contenu = $request->contenu;
+        $commentaire->article_id = $id;
+        $commentaire->user_id = Auth::user()->id;
+
         $commentaire->save();
         return response()->json($commentaire);
     }
@@ -43,23 +47,17 @@ class CommentaireController extends Controller
      */
     public function show(Commentaire $commentaire)
     {
-        //
+        return response()->json($commentaire);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Commentaire $commentaire)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(UpdateCommentaireRequest $request, Commentaire $commentaire)
     {
-        ($request->validated($request->all()));
+        $request->validated($request->all());
+
         $commentaire->update($request->all());
         return response()->json($commentaire);
     }

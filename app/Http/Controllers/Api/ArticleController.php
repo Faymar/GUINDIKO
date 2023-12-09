@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Contracts\Service\Attribute\Required;
 
 class ArticleController extends Controller
@@ -15,14 +16,18 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        // return view('articles.liste');
+        return response()->json(Article::where('estArchive', false)->get());
     }
 
-
-    public function create()
+    public function articleMentore()
     {
-        return view('articles.article');
+        return response()->json(
+            Article::where('estArchive', false)
+                ->where('user_id', Auth::user()->id)
+                ->get()
+        );
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -34,25 +39,19 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-        // $request->validate([
-
-        //     'titre' => 'required',
-        //     'contenu' => 'required',
-        //     'image' => 'required',
-        //     'nombreClique' => 'required',
-        //     'estArchive' => 'required',
-        // ]);
-
+        $request->validated($request->all());
         $article = new Article();
-        ($request->validated($request->all()));
+
+        $imagePath = $request->file('image')->store('images/diplome', 'public');
+        $article->image = $imagePath;
+
         $article->titre = $request->titre;
         $article->contenu = $request->contenu;
         $article->domaine = $request->domaine;
-        // $article->image = $request->image;
-        // $article->nombreClique = $request->nombreClique;
-        // $article->estArchive = $request->estArchive;
+        $article->user_id = Auth::user()->id;
         $article->save();
-        return response()->json('Article ajouté!!!');
+
+        return response()->json('Article ajouté!!!', $article);
     }
 
     /**
@@ -60,16 +59,13 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        $nombreClique = $article->nombreClique + 1;
+        $article->nombreClique = $nombreClique;
+        $article->update();
+
+        return response()->json($article);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Article $article)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -77,8 +73,14 @@ class ArticleController extends Controller
     public function update(UpdateArticleRequest $request, Article $article)
     {
         $request->validated($request->all());
-
-        $article->update($request->all());
+        if ($request->file('image')) {
+            $imagePath = $request->file('image')->store('images/diplome', 'public');
+            $article->image = $imagePath;
+        }
+        $article->titre = $request->titre;
+        $article->contenu = $request->contenu;
+        $article->domaine = $request->domaine;
+        $article->update();
         return response()->json($article);
     }
 

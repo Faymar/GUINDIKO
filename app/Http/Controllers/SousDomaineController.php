@@ -32,22 +32,25 @@ class SousDomaineController extends Controller
     public function store(StoreSousDomaineRequest $request)
     {
         $request->validated($request->all());
+
         $sousDomaine = new Sousdomaine();
+
+        if ($request->file('image')) {
+            $fichierPath = $request->file('image')->store('fichiers/sousDomaine', 'public');
+            $sousDomaine->image = $fichierPath;
+        }
         $sousDomaine->nomSousDomaine = $request->input('nomSousDomaine');
-        $sousDomaine->image = $request->input('image');
         $sousDomaine->description = $request->input('description');
-        $sousDomaine-> save();
+        $sousDomaine->save();
         return response()->json($sousDomaine);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Sousdomaine $sousdomaine)
     {
-        $sousDomaine = SousDomaine::find($id);
-
-        return response()->json($sousDomaine);
+        return response()->json($sousdomaine);
     }
 
     /**
@@ -64,8 +67,11 @@ class SousDomaineController extends Controller
     public function update(UpdateSousDomaineRequest $request,   Sousdomaine $sousdomaine)
     {
         $request->validated($request->all());
+        if ($request->file('image')) {
+            $fichierPath = $request->file('image')->store('fichiers/sousDomaine', 'public');
+            $sousdomaine->image = $fichierPath;
+        }
         $sousdomaine->nomSousDomaine = $request->input('nomSousDomaine');
-        $sousdomaine->image = $request->input('image');
         $sousdomaine->description = $request->input('description');
         $sousdomaine->update();
         // $sousdomaine->update($request->all());
@@ -75,9 +81,11 @@ class SousDomaineController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Sousdomaine $sousdomaine)
     {
-        $diplome = SousDomaine::findOrfail($id);
-        $diplome->delete();
+        $sousdomaine->estArchive = true;
+        $sousdomaine->update();
+
+        return response()->json($sousdomaine);
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Requests\StoreDiplomeRequest;
 use App\Http\Requests\UpdateDiplomeRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use App\Models\Diplome;
+use Illuminate\Support\Facades\Auth;
 
 class DiplomeController extends Controller
 {
@@ -31,11 +32,20 @@ class DiplomeController extends Controller
      */
     public function store(StoreDiplomeRequest $request)
     {
-        
+        // user_id
         $request->validated($request->all());
-        $diplome = Diplome::create($request->all());
-        return response()->json($diplome);
+        $diplome = new Diplome();
 
+        if ($request->file('fichier')) {
+            $fichierPath = $request->file('fichier')->store('fichiers/diplome', 'public');
+            $diplome->fichier = $fichierPath;
+        }
+        $diplome->libele =  $request->get('libele');
+        $diplome->description = $request->get('description');
+        $diplome->dateObtention = $request->get('dateObtention');
+        $diplome->user_id = Auth::user()->id;
+        $diplome->save();
+        return response()->json($diplome);
     }
 
     /**
@@ -46,8 +56,7 @@ class DiplomeController extends Controller
         $diplome = Diplome::find($id);
 
         return response()->json($diplome);
-
-    }    
+    }
     /**
      * Show the form for editing the specified resource.
      */
@@ -62,10 +71,14 @@ class DiplomeController extends Controller
     public function update(UpdateDiplomeRequest $request, Diplome $diplome)
     {
         $request->validated($request->all());
-        $diplome->libele = $request->input('libele');
-        $diplome->fichier = $request->input('fichier');
-        $diplome->description = $request->input('description');
-        $diplome->dateObtention = $request->input('dateObtention');
+
+        if ($request->file('fichier')) {
+            $fichierPath = $request->file('fichier')->store('fichiers/diplome', 'public');
+            $diplome->fichier = $fichierPath;
+        }
+        $diplome->libele =  $request->get('libele');
+        $diplome->description = $request->get('description');
+        $diplome->dateObtention = $request->get('dateObtention');
         $diplome->update();
         // $diplome->update($request->all());
         return response()->json($diplome);
@@ -74,9 +87,11 @@ class DiplomeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Diplome $diplome)
     {
-        $diplome = Diplome::findOrfail($id);
-        $diplome->delete();
+        $diplome->estArchive = true;
+        $diplome->update();
+
+        return response()->json($diplome);
     }
 }

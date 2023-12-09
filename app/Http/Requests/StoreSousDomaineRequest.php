@@ -22,9 +22,9 @@ class StoreSousDomaineRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nomSousDomaine'=>'required|string',
-            // 'image'=>'nullable|String|mimes:pdf,doc,docx,png,jpeg,jpg',
-            'description'=>'required|string',
+            'nomSousDomaine' => 'required|string',
+            'image' => 'nullable|mimes:pdf,doc,docx,png,jpeg,jpg',
+            'description' => 'required|string',
         ];
     }
 }
