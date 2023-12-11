@@ -19,7 +19,7 @@ class SousDomaineController extends Controller
     }
     public function listeSoudomain($id)
     {
-        $sousDomaine = SousDomaine::where('domaine_id', $id);
+        $sousDomaine = SousDomaine::where('domaine_id', $id)->get();
         return response()->json($sousDomaine);
     }
 
