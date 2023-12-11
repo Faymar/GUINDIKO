@@ -17,6 +17,11 @@ class SousDomaineController extends Controller
         $sousDomaine = SousDomaine::all();
         return response()->json($sousDomaine);
     }
+    public function listeSoudomain($id)
+    {
+        $sousDomaine = SousDomaine::where('domaine_id', $id);
+        return response()->json($sousDomaine);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -29,7 +34,7 @@ class SousDomaineController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSousDomaineRequest $request)
+    public function store(StoreSousDomaineRequest $request, $id)
     {
         $request->validated($request->all());
 
@@ -41,6 +46,7 @@ class SousDomaineController extends Controller
         }
         $sousDomaine->nomSousDomaine = $request->input('nomSousDomaine');
         $sousDomaine->description = $request->input('description');
+        $sousDomaine->domaine_id = $id;
         $sousDomaine->save();
         return response()->json($sousDomaine);
     }

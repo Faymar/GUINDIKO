@@ -87,8 +87,9 @@ Route::get('/notifications/count', [NotificationController::class, 'NombreNotifi
 Route::get('/supprimeNotification/{notification}', [NotificationController::class, 'destroy']);
 
 //Route For SousDomaine managament
-Route::post('/ajouterSousDomaine', [SousDomaineController::class, 'store']);
+Route::post('/ajouterSousDomaine/{id}', [SousDomaineController::class, 'store']);
 Route::get('/listerSousDomaine', [SousDomaineController::class, 'index']);
+Route::get('/domaine/listerSousDomaine/{id}', [SousDomaineController::class, 'listeSoudomain']);
 Route::get('/afficherSousDomaine/{sousdomaine}', [SousDomaineController::class, 'show']);
 Route::patch('/modifierSousDomaine/{sousdomaine}', [SousDomaineController::class, 'update']);
 Route::patch('/supprimerSousDomaine/{sousdomaine}', [SousDomaineController::class, 'destroy']);
