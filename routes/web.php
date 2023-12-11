@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,8 @@ Route::get('/', function () {
 
 // Route::get('/ajouter', [ArticleController::class, 'create']);
 // Route::post('/traitement', [ArticleController::class, 'store']);
+
+Route::get('/coversation/{id}', [MessageController::class, 'coversation']);
+Route::get('/message', [MessageController::class, 'listeContact']);
+Route::get('/messageCreate', [MessageController::class, 'create']);
+Route::post('/envoyerMesage/{id}', [MessageController::class, 'store']);

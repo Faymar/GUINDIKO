@@ -11,7 +11,7 @@ class StoreMessageRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreMessageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'contenu' => 'required|string|min:2',
+            'fichier' => 'nullable|file|mimes:png,jpg,pdf|max:1024'
         ];
     }
 }
