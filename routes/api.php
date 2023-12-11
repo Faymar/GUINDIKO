@@ -10,6 +10,7 @@ use App\Http\Controllers\DemandeController;
 use App\Http\Controllers\DomaineController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\ExperienceController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\RoleController;
 use App\Models\Demande;
 use Illuminate\Http\Request;
@@ -27,9 +28,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum', 'estMentor')->get('/teste', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/teste', function (Request $request) {
     $user = Auth::user()->id;
-    dd($user->nomRole);
+    dd($user);
     // dd(Auth::check());
 });
 
@@ -103,3 +104,8 @@ Route::get('/article/listerCommentaire/{id}', [CommentaireController::class, 'Ar
 Route::patch('/voirCommentaire/{commentaire}', [CommentaireController::class, 'show']);
 Route::patch('/modifierCommentaire/{commentaire}', [CommentaireController::class, 'update']);
 Route::patch('/supprimerCommentaire/{commentaire}', [CommentaireController::class, 'destroy']);
+
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::get('/coversation/{id}', [MessageController::class, 'coversation']);
+    Route::post('/envoyerMesage/{id}', [MessageController::class, 'store']);
+});
