@@ -7,7 +7,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use OpenApi\Annotations as OA;
 
+/**
+ * @OA\Info(title="User", version="0.1")
+ */
 class UserController extends Controller
 {
     public function __construct()
@@ -15,6 +19,14 @@ class UserController extends Controller
         $this->middleware('auth:sanctum', ['except' => ['login', 'register']]);
     }
 
+       /**
+ * @OA\Post(
+ * path="/login",
+ *summary="cette route permet de se connecter",
+
+ *     @OA\Response(response="200", description="success",)
+ * )
+ */
     public function login(Request $request)
     {
         $request->validate([
@@ -38,6 +50,14 @@ class UserController extends Controller
         ], 401);
     }
 
+      /**
+ * @OA\Post(
+ * path="/registre",
+ *summary="cette route permet de fzaire une inscription",
+
+ *     @OA\Response(response="200", description="success",)
+ * )
+ */
     public function register(Request $request)
     {
         if (preg_match('/[@]/', $request->email)) {
@@ -71,6 +91,14 @@ class UserController extends Controller
         ]);
     }
 
+      /**
+ * @OA\Get(
+ * path="/logout",
+ *summary="cette route permet de se deconnecter",
+
+ *     @OA\Response(response="200", description="success",)
+ * )
+ */
     public function logout()
     {
         Auth::user()->tokens()->delete();
@@ -89,7 +117,21 @@ class UserController extends Controller
             ]
         ]);
     }
+    /**
+ * @OA\Post(
+ * path="/ModifierProfil/{user}",
+ *summary="cette route permet de modifier son profil ",
+ *@OA\Parameter(
+*name="user",
+*in="path",
+*required=true,
+*description="user qu'on veut modifier",
+*@OA\Schema(type="integer")
+*),
 
+ *     @OA\Response(response="200", description="success",)
+ * )
+ */
     public function update(Request $request,  User $user)
     {
         if (preg_match('/[@]/', $request->email)) {
@@ -118,6 +160,21 @@ class UserController extends Controller
         return response()->json(['message' => 'User updated successfully!']);
     }
 
+    /**
+ * @OA\Post(
+ * path="/ModifierMotdePasse/{user}",
+ *summary="cette route permet de modifier son mot de passe ",
+ *@OA\Parameter(
+*name="user",
+*in="path",
+*required=true,
+*description="user qui veut moodifier son mot de passe",
+*@OA\Schema(type="integer")
+*),
+
+ *     @OA\Response(response="200", description="success",)
+ * )
+ */
     public function updatePassword(Request $request, User $user)
     {
         $request->validate([

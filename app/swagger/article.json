@@ -1,0 +1,108 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Article",
+        "version": "0.1"
+    },
+    "paths": {
+        "/listerArticles": {
+            "get": {
+                "summary": "cette route permet de lister ses aticles",
+                "operationId": "7bc2fa2cd253c5caf562dd4e23a215fc",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/mentor/listerArticles": {
+            "get": {
+                "summary": "cette route permet à un mentor de lister tous ses aticles",
+                "operationId": "4c09adbeac48f0f316557463de1b5a6c",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/ajouterArticle": {
+            "post": {
+                "summary": "cette route permet d'ajouter un article",
+                "operationId": "5cf90fba26f1cc0c58ad859d667bdc0a",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/voirArticles/{article}": {
+            "get": {
+                "summary": "cette route permet d'afficher un article (detail)",
+                "operationId": "bcb60ce8daff4b7c9f065c7ba56bfeb7",
+                "parameters": [
+                    {
+                        "name": "article",
+                        "in": "path",
+                        "description": "id de l'article qu'on veut afficher",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/modifierArticles/{article}": {
+            "post": {
+                "summary": "cette route permet de modifier un article ",
+                "operationId": "1c81648afd866230c36176126c299dd9",
+                "parameters": [
+                    {
+                        "name": "article",
+                        "in": "path",
+                        "description": "id de l'article qu'on veut modifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/supprimerArticles/{article}": {
+            "get": {
+                "summary": "cette route permet de supprimer (archiver) un article ",
+                "operationId": "b36b91a1428713c1e11c662fcdb82305",
+                "parameters": [
+                    {
+                        "name": "article",
+                        "in": "path",
+                        "description": "article qu'on veut supprimer (archiver)",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        }
+    }
+}

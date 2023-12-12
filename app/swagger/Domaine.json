@@ -1,0 +1,97 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Domaine",
+        "version": "0.1"
+    },
+    "paths": {
+        "/listerDomaine": {
+            "get": {
+                "summary": "cette route permet de lister tous les domaines qui ne sont pas archivés (supprimer)",
+                "operationId": "d5b96e464bd3f8ad6becec873aed7c30",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/ajouterDomaine": {
+            "post": {
+                "summary": "cette route permet d'ajouter un domaine",
+                "operationId": "2dd482313cdf151e704d6522e74e7dfd",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/voirDomaine/{domaine}": {
+            "get": {
+                "summary": "cette route permet d'afficher une domaine (detail)",
+                "operationId": "faddb0dd9caa59df2afbaf3c456d63f0",
+                "parameters": [
+                    {
+                        "name": "domaine",
+                        "in": "path",
+                        "description": "domaine qu'on veut afficher",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/modifierDomaine/{domaine}": {
+            "post": {
+                "summary": "cette route permet de modifier une domaine ",
+                "operationId": "9f7402611ff7c7082d9691360bdaf68e",
+                "parameters": [
+                    {
+                        "name": "domaine",
+                        "in": "path",
+                        "description": "domaine qu'on veut modifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/supprimerDomaine/{domaine}": {
+            "get": {
+                "summary": "cette route permet de supprimer (archiver) une domaine ",
+                "operationId": "df0c1fa2afb26adf938c0556a5342269",
+                "parameters": [
+                    {
+                        "name": "domaine",
+                        "in": "path",
+                        "description": "domaine qu'on veut supprimer (archiver)",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        }
+    }
+}

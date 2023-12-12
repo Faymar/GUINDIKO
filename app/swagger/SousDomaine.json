@@ -1,0 +1,130 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "SousDomaine",
+        "version": "0.1"
+    },
+    "paths": {
+        "/listerSousDomaine": {
+            "get": {
+                "summary": "cette route permet de voir la liste des sous_domaines",
+                "operationId": "d1cc7094fa49baceb1c2b7e1ac6a4839",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/domaine/listerSousDomaine/{id}": {
+            "get": {
+                "summary": "cette route permet de lister tous les sous_domaines d'un domaine donne",
+                "operationId": "963638a28796958dc98dd045b24a426a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id du domaine qu'on veut lister ses sous_domaines",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/ajouterSousDomaine/{id}": {
+            "post": {
+                "summary": "cette route permet d'ajouter un sous_domaine à un domaine donne",
+                "operationId": "e6b0794fac7805380ccf912efb429198",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id du domaine qu'on veut ajouter un sous_domaine",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/afficherSousDomaine/{sousdomaine}": {
+            "get": {
+                "summary": "cette route permet d'afficher un sous-domaine (detail)",
+                "operationId": "48b8af6c2bc4a2eb69a30682a75c3dca",
+                "parameters": [
+                    {
+                        "name": "sousdomaine",
+                        "in": "path",
+                        "description": "sousdomaine qu'on veut afficher",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/modifierSousDomaine/{sousdomaine}": {
+            "post": {
+                "summary": "cette route permet de modifier un sous-domaine ",
+                "operationId": "aa2de6f8d6b5ff99952975d2cb220872",
+                "parameters": [
+                    {
+                        "name": "sousdomaine",
+                        "in": "path",
+                        "description": "sousdomaine qu'on veut modifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/supprimerSousDomaine/{sousdomaine}": {
+            "get": {
+                "summary": "cette route permet de supprimer (archiver) un sous-domaine ",
+                "operationId": "62f27a5bac7b58423dee6de170e88ad0",
+                "parameters": [
+                    {
+                        "name": "sousdomaine",
+                        "in": "path",
+                        "description": "sousdomaine qu'on veut supprimer (archiver)",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        }
+    }
+}

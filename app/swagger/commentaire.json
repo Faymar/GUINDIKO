@@ -1,0 +1,130 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Commentaire",
+        "version": "0.1"
+    },
+    "paths": {
+        "/listerCommentaire": {
+            "get": {
+                "summary": "cette route permet de lister ses commentaires",
+                "operationId": "80e95eea1772c028a649b4b58ffd39fe",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/article/listerCommentaire/{id}": {
+            "get": {
+                "summary": "cette route permet de liste tous ses commentaires sur un article",
+                "operationId": "b931fe94dbeaf1374143372eb6f94e9d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id de l'article qu'on veut lister ses commentaires",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/commentaire/ajouter/{id}": {
+            "post": {
+                "summary": "cette route permet d'envoyer un commentaire sur un article",
+                "operationId": "bfcf96e67bd439520e169a69058fe09c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id de l'article qu'on veut envoyer un commentaire",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/voirCommentaire/{commentaire}": {
+            "get": {
+                "summary": "cette route permet d'afficher un commentaire (detail)",
+                "operationId": "77e3b70abc9c63f90c47ccb99a192f5b",
+                "parameters": [
+                    {
+                        "name": "commentaire",
+                        "in": "path",
+                        "description": "commentaire qu'on veut afficher",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/modifierCommentaire/{commentaire}": {
+            "post": {
+                "summary": "cette route permet de modifier un commentaire ",
+                "operationId": "f77738a70f8f24ce9e25d55cb7463faa",
+                "parameters": [
+                    {
+                        "name": "commentaire",
+                        "in": "path",
+                        "description": "commentaire qu'on veut modifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/supprimerCommentaire/{commentaire}": {
+            "get": {
+                "summary": "cette route permet de supprimer (archiver) un commentaire ",
+                "operationId": "95d39776a0ce3e3b1ba58d7ed6f34c93",
+                "parameters": [
+                    {
+                        "name": "commentaire",
+                        "in": "path",
+                        "description": "commentaire qu'on veut supprimer (archiver)",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        }
+    }
+}

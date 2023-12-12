@@ -1,0 +1,97 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Diplome",
+        "version": "0.1"
+    },
+    "paths": {
+        "/listerDiplomes": {
+            "get": {
+                "summary": "cette route permet de lister tous les diplomes",
+                "operationId": "c9e89f2913c3be5cbd07c7a63790c435",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/ajouterDiplome": {
+            "post": {
+                "summary": "cette route permet d'ajouter un diplome",
+                "operationId": "d0b7b5984037a0337edd602c0f248bbc",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/afficherDiplome/{id}": {
+            "get": {
+                "summary": "cette route permet d'afficher un diplome (detail)",
+                "operationId": "5dac1bc684864178af220550d4f93ba9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id du diplome qu'on veut afficher",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/modifierDiplome/{diplome}": {
+            "post": {
+                "summary": "cette route permet de modifier une diplome ",
+                "operationId": "969a2fd3c2efaa5cf86fad1c1a447071",
+                "parameters": [
+                    {
+                        "name": "diplome",
+                        "in": "path",
+                        "description": "diplome qu'on veut modifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/supprimerDiplome/{diplome}": {
+            "get": {
+                "summary": "cette route permet de supprimer (archiver) un diplome ",
+                "operationId": "86ce85a6f30462fd50c133a8690eb01d",
+                "parameters": [
+                    {
+                        "name": "diplome",
+                        "in": "path",
+                        "description": "diplome qu'on veut supprimer (archiver)",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        }
+    }
+}

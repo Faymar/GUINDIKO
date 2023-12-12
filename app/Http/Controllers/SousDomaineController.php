@@ -6,34 +6,65 @@ use App\Http\Requests\StoreSousDomaineRequest;
 use App\Http\Requests\UpdateSousDomaineRequest;
 use App\Models\Diplome;
 use App\Models\Sousdomaine;
+use OpenApi\Annotations as OA;
 
+
+/**
+ * @OA\Info(title="SousDomaine", version="0.1")
+ */
 class SousDomaineController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+         /**
+ * @OA\Get(
+ * path="/listerSousDomaine",
+ *summary="cette route permet de voir la liste des sous_domaines",
+
+ *     @OA\Response(response="200", description="success",)
+ * )
+ */
     public function index()
     {
         $sousDomaine = SousDomaine::all();
         return response()->json($sousDomaine);
     }
+  /**
+ * @OA\Get(
+ * path="/domaine/listerSousDomaine/{id}",
+ *summary="cette route permet de lister tous les sous_domaines d'un domaine donne",
+ *@OA\Parameter(
+*name="id",
+*in="path",
+*required=true,
+*description="id du domaine qu'on veut lister ses sous_domaines",
+*@OA\Schema(type="integer")
+*),
+
+ *     @OA\Response(response="200", description="success",)
+ * )
+ */
     public function listeSoudomain($id)
     {
         $sousDomaine = SousDomaine::where('domaine_id', $id)->get();
         return response()->json($sousDomaine);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
+   /**
+ * @OA\Post(
+ * path="/ajouterSousDomaine/{id}",
+ *summary="cette route permet d'ajouter un sous_domaine à un domaine donne",
+ *@OA\Parameter(
+*name="id",
+*in="path",
+*required=true,
+*description="id du domaine qu'on veut ajouter un sous_domaine",
+*@OA\Schema(type="integer")
+*),
+
+ *     @OA\Response(response="200", description="success",)
+ * )
+ */
     public function store(StoreSousDomaineRequest $request, $id)
     {
         $request->validated($request->all());
@@ -51,25 +82,42 @@ class SousDomaineController extends Controller
         return response()->json($sousDomaine);
     }
 
+     
     /**
-     * Display the specified resource.
-     */
+ * @OA\Get(
+ * path="/afficherSousDomaine/{sousdomaine}",
+ *summary="cette route permet d'afficher un sous-domaine (detail)",
+ *@OA\Parameter(
+*name="sousdomaine",
+*in="path",
+*required=true,
+*description="sousdomaine qu'on veut afficher",
+*@OA\Schema(type="integer")
+*),
+
+ *     @OA\Response(response="200", description="success",)
+ * )
+ */
     public function show(Sousdomaine $sousdomaine)
     {
         return response()->json($sousdomaine);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(SousDomaine $sousDomaine)
-    {
-        //
-    }
+ * @OA\Post(
+ * path="/modifierSousDomaine/{sousdomaine}",
+ *summary="cette route permet de modifier un sous-domaine ",
+ *@OA\Parameter(
+*name="sousdomaine",
+*in="path",
+*required=true,
+*description="sousdomaine qu'on veut modifier",
+*@OA\Schema(type="integer")
+*),
 
-    /**
-     * Update the specified resource in storage.
-     */
+ *     @OA\Response(response="200", description="success",)
+ * )
+ */
     public function update(UpdateSousDomaineRequest $request,   Sousdomaine $sousdomaine)
     {
         $request->validated($request->all());
@@ -85,8 +133,20 @@ class SousDomaineController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     */
+ * @OA\Get(
+ * path="/supprimerSousDomaine/{sousdomaine}",
+ *summary="cette route permet de supprimer (archiver) un sous-domaine ",
+ *@OA\Parameter(
+*name="sousdomaine",
+*in="path",
+*required=true,
+*description="sousdomaine qu'on veut supprimer (archiver)",
+*@OA\Schema(type="integer")
+*),
+
+ *     @OA\Response(response="200", description="success",)
+ * )
+ */
     public function destroy(Sousdomaine $sousdomaine)
     {
         $sousdomaine->estArchive = true;

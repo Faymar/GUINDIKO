@@ -7,16 +7,42 @@ use App\Http\Requests\StoreCommentaireRequest;
 use App\Http\Requests\UpdateCommentaireRequest;
 use App\Models\Commentaire;
 use Illuminate\Support\Facades\Auth;
+use OpenApi\Annotations as SWG;
 
+
+/**
+ * @SWG\Info(title="Commentaire", version="0.1")
+ */
 class CommentaireController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+               /**
+ * @SWG\Get(
+ * path="/listerCommentaire",
+ *summary="cette route permet de lister ses commentaires",
+
+ *     @SWG\Response(response="200", description="success",)
+ * )
+ */
     public function index()
     {
         return response()->json(Commentaire::where('estArchive', false)->get());
     }
+    
+      /**
+ * @SWG\Get(
+ * path="/article/listerCommentaire/{id}",
+ *summary="cette route permet de liste tous ses commentaires sur un article",
+ *@OA\Parameter(
+*name="id",
+*in="path",
+*required=true,
+*description="id de l'article qu'on veut lister ses commentaires",
+*@OA\Schema(type="integer")
+*),
+
+ *     @SWG\Response(response="200", description="success",)
+ * )
+ */
     public function ArticleListeCommt($id)
     {
         return response()->json(
@@ -26,9 +52,22 @@ class CommentaireController extends Controller
         );
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
+     /**
+ * @SWG\Post(
+ * path="/commentaire/ajouter/{id}",
+ *summary="cette route permet d'envoyer un commentaire sur un article",
+ *@OA\Parameter(
+*name="id",
+*in="path",
+*required=true,
+*description="id de l'article qu'on veut envoyer un commentaire",
+*@OA\Schema(type="integer")
+*),
+
+ *     @SWG\Response(response="200", description="success",)
+ * )
+ */
     public function store(StoreCommentaireRequest $request, $id)
     {
         $request->validated($request->all());
@@ -42,18 +81,43 @@ class CommentaireController extends Controller
         return response()->json($commentaire);
     }
 
-    /**
-     * Display the specified resource.
-     */
+      /**
+ * @SWG\Get(
+ * path="/voirCommentaire/{commentaire}",
+ *summary="cette route permet d'afficher un commentaire (detail)",
+ *@OA\Parameter(
+*name="commentaire",
+*in="path",
+*required=true,
+*description="commentaire qu'on veut afficher",
+*@OA\Schema(type="integer")
+*),
+
+ *     @SWG\Response(response="200", description="success",)
+ * )
+ */
     public function show(Commentaire $commentaire)
     {
         return response()->json($commentaire);
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     */
+   
+      /**
+ * @SWG\Post(
+ * path="/modifierCommentaire/{commentaire}",
+ *summary="cette route permet de modifier un commentaire ",
+ *@OA\Parameter(
+*name="commentaire",
+*in="path",
+*required=true,
+*description="commentaire qu'on veut modifier",
+*@OA\Schema(type="integer")
+*),
+
+ *     @SWG\Response(response="200", description="success",)
+ * )
+ */
     public function update(UpdateCommentaireRequest $request, Commentaire $commentaire)
     {
         $request->validated($request->all());
@@ -62,9 +126,22 @@ class CommentaireController extends Controller
         return response()->json($commentaire);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    
+     /**
+ * @SWG\Get(
+ * path="/supprimerCommentaire/{commentaire}",
+ *summary="cette route permet de supprimer (archiver) un commentaire ",
+ *@OA\Parameter(
+*name="commentaire",
+*in="path",
+*required=true,
+*description="commentaire qu'on veut supprimer (archiver)",
+*@OA\Schema(type="integer")
+*),
+
+ *     @SWG\Response(response="200", description="success",)
+ * )
+ */
     public function destroy(Commentaire $commentaire)
     {
         $commentaire->estArchive = true;

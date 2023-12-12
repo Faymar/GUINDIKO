@@ -1,0 +1,86 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "User",
+        "version": "0.1"
+    },
+    "paths": {
+        "/login": {
+            "post": {
+                "summary": "cette route permet de se connecter",
+                "operationId": "eb4a9d12f4bb474018dd941fe27d2810",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/registre": {
+            "post": {
+                "summary": "cette route permet de fzaire une inscription",
+                "operationId": "197db40b37848d63f601dde5b179d9b0",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "get": {
+                "summary": "cette route permet de se deconnecter",
+                "operationId": "9f0d8afbf3e5cf306c85d4f4ee615515",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/ModifierProfil/{user}": {
+            "post": {
+                "summary": "cette route permet de modifier son profil ",
+                "operationId": "75c64e931ae9b57c8aec8e798c85c6dd",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "description": "user qu'on veut modifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/ModifierMotdePasse/{user}": {
+            "post": {
+                "summary": "cette route permet de modifier son mot de passe ",
+                "operationId": "9c5d6092df179553c070af96af2a3440",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "description": "user qui veut moodifier son mot de passe",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        }
+    }
+}

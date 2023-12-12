@@ -1,0 +1,97 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "experience",
+        "version": "0.1"
+    },
+    "paths": {
+        "/listerExperience": {
+            "get": {
+                "summary": "cette route permet de lister toutes les experiences",
+                "operationId": "c092ee82bdded9b2123963d8b691b0a8",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/ajouterExperience": {
+            "post": {
+                "summary": "cette route permet d'ajouter une experience",
+                "operationId": "4ea6546adad1a211d4ae37927227ebab",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/voirExperience/{experience}": {
+            "get": {
+                "summary": "cette route permet d'afficher une experience (detail)",
+                "operationId": "2d1329c8c935c81f9c7ab123aedaf18d",
+                "parameters": [
+                    {
+                        "name": "experience",
+                        "in": "path",
+                        "description": "experience qu'on veut afficher",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "'/modifierExperience/{experience}": {
+            "post": {
+                "summary": "cette route permet de modifier une experience ",
+                "operationId": "3e41c31fd9067694aa43b9b9ca9f9667",
+                "parameters": [
+                    {
+                        "name": "experience",
+                        "in": "path",
+                        "description": "experience qu'on veut modifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/supprimerExperience/{experience}": {
+            "get": {
+                "summary": "cette route permet de supprimer (archiver) une experience ",
+                "operationId": "0d4f465a1ccefeb0158da92d0a406fa3",
+                "parameters": [
+                    {
+                        "name": "experience",
+                        "in": "path",
+                        "description": "experience qu'on veut supprimer (archiver)",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        }
+    }
+}

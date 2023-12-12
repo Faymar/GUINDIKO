@@ -6,20 +6,35 @@ use App\Http\Requests\StoreExperienceRequest;
 use App\Http\Requests\UpdateExperienceRequest;
 use App\Models\Experience;
 use Illuminate\Support\Facades\Auth;
+use OpenApi\Annotations as SWG;
 
+
+/**
+ * @SWG\Info(title="experience", version="0.1")
+ */
 class ExperienceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+       /**
+ * @SWG\Get(
+ * path="/listerExperience",
+ *summary="cette route permet de lister toutes les experiences",
+
+ *     @SWG\Response(response="200", description="success",)
+ * )
+ */
     public function index()
     {
         return response()->json(Experience::where('estArchive', false)->get());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+     /**
+ * @SWG\Post(
+ * path="/ajouterExperience",
+ *summary="cette route permet d'ajouter une experience",
+
+ *     @SWG\Response(response="200", description="success",)
+ * )
+ */
     public function store(StoreExperienceRequest $request)
     {
         $request->validated($request->all());
@@ -43,17 +58,40 @@ class ExperienceController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
+ * @SWG\Get(
+ * path="/voirExperience/{experience}",
+ *summary="cette route permet d'afficher une experience (detail)",
+ *@OA\Parameter(
+*name="experience",
+*in="path",
+*required=true,
+*description="experience qu'on veut afficher",
+*@OA\Schema(type="integer")
+*),
+
+ *     @SWG\Response(response="200", description="success",)
+ * )
+ */
     public function show(Experience $experience)
     {
         return response()->json($experience);
     }
 
+   /**
+ * @SWG\Post(
+ * path="'/modifierExperience/{experience}",
+ *summary="cette route permet de modifier une experience ",
+ *@OA\Parameter(
+*name="experience",
+*in="path",
+*required=true,
+*description="experience qu'on veut modifier",
+*@OA\Schema(type="integer")
+*),
 
-    /**
-     * Update the specified resource in storage.
-     */
+ *     @SWG\Response(response="200", description="success",)
+ * )
+ */
     public function update(UpdateExperienceRequest $request, Experience $experience)
     {
         $request->validated($request->all());
@@ -74,9 +112,22 @@ class ExperienceController extends Controller
         return response()->json($experience);
     }
 
+   
     /**
-     * Remove the specified resource from storage.
-     */
+ * @SWG\Get(
+ * path="/supprimerExperience/{experience}",
+ *summary="cette route permet de supprimer (archiver) une experience ",
+ *@OA\Parameter(
+*name="experience",
+*in="path",
+*required=true,
+*description="experience qu'on veut supprimer (archiver)",
+*@OA\Schema(type="integer")
+*),
+
+ *     @SWG\Response(response="200", description="success",)
+ * )
+ */
     public function destroy(Experience $experience)
     {
         $experience->estArchive = true;

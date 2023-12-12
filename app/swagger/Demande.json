@@ -1,0 +1,152 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Demande",
+        "version": "0.1"
+    },
+    "paths": {
+        "/listeDemanes": {
+            "get": {
+                "summary": "cette route permet de lister toutes les demandes",
+                "operationId": "cc41d7122c1ba4441ac3e71bcd5efce0",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/mentor/listeDemanes": {
+            "get": {
+                "summary": "cette route permet de lister toutes les demandes d'un mentor",
+                "operationId": "54414f02e2b54acac2e97bb456b78589",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/mentore/listeDemanes": {
+            "get": {
+                "summary": "cette route permet de lister toutes les demandes qu'un mentoré a fait",
+                "operationId": "ec9fb23fc2c77a622400cba549ae7df5",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/faireDemande/{id_mentor}": {
+            "post": {
+                "summary": "cette route permet d'envoyer une demande à un mentor",
+                "operationId": "50adfa711ea8702115f1911ac2ba71b6",
+                "parameters": [
+                    {
+                        "name": "id_mentor",
+                        "in": "path",
+                        "description": "id_mentor qu'on veut envoyer la demande",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/VoirDemande/{demande}": {
+            "get": {
+                "summary": "cette route permet d'afficher une demande (detail)",
+                "operationId": "e473c0cf834d9cbcf26138d38f57c210",
+                "parameters": [
+                    {
+                        "name": "demande",
+                        "in": "path",
+                        "description": "demande qu'on veut afficher",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/accepteDemande/{demande}": {
+            "get": {
+                "summary": "cette route permet d'accepter une demande",
+                "operationId": "17550a42d2fbffe70815fe7488555cea",
+                "parameters": [
+                    {
+                        "name": "demande",
+                        "in": "path",
+                        "description": "demande qu'on veut accepter",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/refuserDemande/{demande}": {
+            "get": {
+                "summary": "cette route permet de refuser une demande ",
+                "operationId": "7aaba7be91d4a05fc1b730302c5332b5",
+                "parameters": [
+                    {
+                        "name": "demande",
+                        "in": "path",
+                        "description": "demande qu'on veut refuser",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/supprimerDiplome/{diplome}": {
+            "get": {
+                "summary": "cette route permet de supprimer (archiver) un diplome ",
+                "operationId": "7302728b4f1b3267a439b03a9267f9de",
+                "parameters": [
+                    {
+                        "name": "diplome",
+                        "in": "path",
+                        "description": "diplome qu'on veut supprimer (archiver)",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        }
+    }
+}

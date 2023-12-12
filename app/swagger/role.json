@@ -1,0 +1,97 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Roles",
+        "version": "0.1"
+    },
+    "paths": {
+        "/listerRoles": {
+            "get": {
+                "summary": "cette route permet de lister tous les roles qui ne sont pas archivés (supprimer)",
+                "operationId": "c3359a862ae5630cf633f7f4f30e45ea",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/ajouterRoles": {
+            "post": {
+                "summary": "cette route permet d'ajouter un role'",
+                "operationId": "fb6e86f2f25841ac0e3b0b311cb831f5",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/voirRoles/{role}": {
+            "get": {
+                "summary": "cette route permet d'afficher un role",
+                "operationId": "4d02dbe74d4f7f1434f217872ccb6d6e",
+                "parameters": [
+                    {
+                        "name": "role",
+                        "in": "path",
+                        "description": "role qu'on veut afficher",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/modifierRoles/{role}": {
+            "post": {
+                "summary": "cette route permet de modifier un role",
+                "operationId": "48fd729f90ec3029196dd3395fbb49a2",
+                "parameters": [
+                    {
+                        "name": "role",
+                        "in": "path",
+                        "description": "role qu'on veut modifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/supprimerRoles/{role}": {
+            "get": {
+                "summary": "cette route permet de supprimer (archiver) un role",
+                "operationId": "37439a306fdb9378cc8863f15246b54e",
+                "parameters": [
+                    {
+                        "name": "role",
+                        "in": "path",
+                        "description": "role qu'on veut supprimer (archiver)",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        }
+    }
+}

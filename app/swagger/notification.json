@@ -1,0 +1,76 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Notification API",
+        "description": " notifications  ",
+        "version": "1"
+    },
+    "paths": {
+        "/notifications/create/{id}": {
+            "post": {
+                "summary": "Cette route permet d'envoyer un message",
+                "operationId": "2a027cda0cd6f23e8ff67aa0051b1162",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de l'utilisateur à qui envoyer le message",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/listeNotification": {
+            "get": {
+                "summary": "cette route permet de lister toutes les notification",
+                "operationId": "e924ae0bf774ae0ed641cd045680e647",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/notifications/count": {
+            "get": {
+                "summary": "cette route permet de donner le nombre de notification",
+                "operationId": "7ec94fc8f19b6dea04404e426cca710a",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/supprimeNotification/{notification}": {
+            "get": {
+                "summary": "cette route permet de supprimer une notification",
+                "operationId": "568ae5c3016629f681481bc9b8f05873",
+                "parameters": [
+                    {
+                        "name": "notification",
+                        "in": "path",
+                        "description": "notification qu'on veut supprimer",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,75 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Evaluation",
+        "version": "0.1"
+    },
+    "paths": {
+        "/listerEvaluation": {
+            "get": {
+                "summary": "cette route permet de lister toutes les evaluations qui ne sont pas archivés (supprimer)",
+                "operationId": "fb6ae754054954f5b30af5146dce4e83",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/EvaluationMentor": {
+            "get": {
+                "summary": "cette route permet d'evaluer un mentor (supprimer)",
+                "operationId": "ca3cc9b5c044be5fad899610d948ef6e",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "ajouterEvaluation/{userMentor_id}": {
+            "post": {
+                "summary": "cette route permet d'ajouter une evaluation pour un mentor donné'",
+                "operationId": "b0224ddfafb025474adb8d0b98e48b33",
+                "parameters": [
+                    {
+                        "name": "userMentor_id",
+                        "in": "path",
+                        "description": "userMentor_id mentor qu'on veut evaluer",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/voirEvaluation/{evaluation}": {
+            "get": {
+                "summary": "cette route permet d'afficher une evaluation (detail)",
+                "operationId": "38ca17409648c5f217da82d4b5f92272",
+                "parameters": [
+                    {
+                        "name": "evaluation",
+                        "in": "path",
+                        "description": "evaluation qu'on veut afficher",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        }
+    }
+}

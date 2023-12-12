@@ -1,0 +1,53 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Messagerie (chat)",
+        "version": "0.1"
+    },
+    "paths": {
+        "/envoyerMesage/{id}": {
+            "post": {
+                "summary": "cette route permet d'envoyer un message",
+                "operationId": "06cf94c4bc737436df17eb9f696860ca",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de l'utilisateur qu'on envoie le message (destinataire)",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/coversation/{id}": {
+            "post": {
+                "summary": "cette route permet de lister toutes les conversations ",
+                "operationId": "7fa724ce4fc1b40b597401b177383145",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de l'utilisateur a qui on a discuté",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        }
+    }
+}

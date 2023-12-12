@@ -8,12 +8,28 @@ use App\Models\Message;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Support\Facades\Auth;
+use OpenApi\Annotations as OA;
 
+
+/**
+ * @OA\Info(title="Messagerie (chat)", version="0.1")
+ */
 class MessageController extends Controller
-{
+{  
     /**
-     * Store a newly created resource in storage.
-     */
+    * @OA\Post(
+    * path="/envoyerMesage/{id}",
+   *summary="cette route permet d'envoyer un message",
+   *@OA\Parameter(
+   *name="id",
+   *in="path",
+   *required=true,
+   *description="ID de l'utilisateur qu'on envoie le message (destinataire)",
+   *@OA\Schema(type="integer")
+   *),
+    *     @OA\Response(response="200", description="success",)
+    * )
+    */
     public function store(StoreMessageRequest $request, $id)
     {
         $request->validated($request->all());
@@ -33,8 +49,19 @@ class MessageController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
+    * @OA\Post(
+    * path="/coversation/{id}",
+   *summary="cette route permet de lister toutes les conversations ",
+   *@OA\Parameter(
+   *name="id",
+   *in="path",
+   *required=true,
+   *description="ID de l'utilisateur a qui on a discuté",
+   *@OA\Schema(type="integer")
+   *),
+    *     @OA\Response(response="200", description="success",)
+    * )
+    */
     public function coversation($id)
     {
         $user = User::findOrFail($id);
