@@ -25,6 +25,7 @@ class DomaineController extends Controller
         $request->validated($request->all());
         $domaine = new Domaine();
         $domaine->nomDomaine = $request->input('nomDomaine');
+        $domaine->image = $request->input('image');
         $domaine->description = $request->input('description');
         $domaine->save();
 
@@ -47,6 +48,7 @@ class DomaineController extends Controller
     {
         $request->validated($request->all());
         $domaine->nomDomaine = $request->input('nomDomaine');
+        $domaine->image = $request->input('image');
         $domaine->description = $request->input('description');
         $domaine->update();
 

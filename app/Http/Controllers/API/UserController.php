@@ -51,6 +51,8 @@ class UserController extends Controller
             'prenom' => 'required|string|max:255',
             'email' => $eamil_userNameValidator,
             'password' => 'required|string|min:6',
+            'datedeNaissance' => 'nullable|date',
+            'telephone' => 'nullable|regex:/^(\+)?[0-9]{9}$/',
         ]);
 
         $user = User::create([
@@ -63,7 +65,6 @@ class UserController extends Controller
             'role_id' => $request->role_id,
             'domaine_id' => $request->domaine_id,
         ]);
-
         return response()->json([
             'message' => 'Compte créer',
             'user' => $user
@@ -87,5 +88,50 @@ class UserController extends Controller
                 'type' => 'bearer',
             ]
         ]);
+    }
+
+    public function update(Request $request,  User $user)
+    {
+        if (preg_match('/[@]/', $request->email)) {
+            $eamil_userNameValidator  = 'required|string|email|max:255|unique:users';
+        } else {
+            $eamil_userNameValidator  = 'required|string|max:10|unique:users';
+        }
+
+        $request->validate([
+            'nom' => 'required|string|max:255',
+            'prenom' => 'required|string|max:255',
+            'email' => $eamil_userNameValidator,
+            'datedeNaissance' => 'nullable|date',
+            'telephone' => 'nullable|numeric|digits:9',
+        ]);
+
+        $user->nom  = $request->nom;
+        $user->prenom =  $request->prenom;
+        $user->email = $request->email;
+        $user->datedeNaissance =  $request->datedeNaissance;
+        $user->telephone = $request->telephone;
+        $user->role_id = $request->role_id;
+        $user->domaine_id = $request->domaine_id;
+        $user->update();
+
+        return response()->json(['message' => 'User updated successfully!']);
+    }
+
+    public function updatePassword(Request $request, User $user)
+    {
+        $request->validate([
+            'old_password' => 'required|string|min:6',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        if (!Hash::check($request->old_password, $user->password)) {
+            return response()->json('Le mot de passe actuel est incorrect.');
+        }
+
+        $user->password = Hash::make($request->password);
+        $user->update();
+
+        return response()->json(['success', 'Le mot de passe a été mis à jour avec succès.']);
     }
 }

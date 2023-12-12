@@ -19,11 +19,19 @@ class DemandeController extends Controller
 
     public function demaneMentor()
     {
-        return response()->json(Demande::where('userMentor_id',  Auth::user()->id)->get());
+        $demandes = Demande::join('users', 'demandes.userMentore_id', '=', 'users.id')
+            ->where('userMentor_id', Auth::user()->id)
+            ->get();
+
+        return response()->json($demandes);
     }
     public function demaneMentore()
     {
-        return response()->json(Demande::where('userMentore_id', Auth::user()->id)->get());
+        $demandes = Demande::join('users', 'demandes.userMentor_id', '=', 'users.id')
+            ->where('userMentore_id', Auth::user()->id)
+            ->get();
+
+        return response()->json($demandes);
     }
     /**
      * Store a newly created resource in storage.
@@ -78,6 +86,10 @@ class DemandeController extends Controller
      */
     public function destroy(Demande $demande)
     {
-        //
+
+        $demande->estArchive = true;
+        $demande->update();
+
+        return response()->json("votre demande est annulee avec success");
     }
 }

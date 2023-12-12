@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('nomSousDomaine')->unique();
             $table->string('image');
             $table->string('description');
+            $table->unsignedBigInteger('domaine_id');
+            $table->foreign('domaine_id')->references('id')->on('users')->onDelete('cascade');
             $table->boolean('estArchive')->default(false);
             $table->timestamps();
         });

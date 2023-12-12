@@ -23,7 +23,7 @@ class StoreDiplomeRequest extends FormRequest
     {
         return [
             'libele' => 'required|string',
-            'fichier' => 'nullable|mimes:pdf,doc,docx,png,jpeg,jpg',
+            'fichier' => 'nullable|string',
             'description' => 'nullable|string',
             'dateObtention' => 'required|date',
         ];
