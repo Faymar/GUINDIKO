@@ -36,12 +36,13 @@ class DiplomeController extends Controller
         $request->validated($request->all());
         $diplome = new Diplome();
 
-        if ($request->file('fichier')) {
-            $fichierPath = $request->file('fichier')->store('fichiers/diplome', 'public');
-            $diplome->fichier = $fichierPath;
-        }
+        // if ($request->file('fichier')) {
+        //     $fichierPath = $request->file('fichier')->store('fichiers/diplome', 'public');
+        //     $diplome->fichier = $fichierPath;
+        // }
         $diplome->libele =  $request->get('libele');
         $diplome->description = $request->get('description');
+        $diplome->fichier = $request->get('fichier');
         $diplome->dateObtention = $request->get('dateObtention');
         $diplome->user_id = Auth::user()->id;
         $diplome->save();
@@ -72,12 +73,13 @@ class DiplomeController extends Controller
     {
         $request->validated($request->all());
 
-        if ($request->file('fichier')) {
-            $fichierPath = $request->file('fichier')->store('fichiers/diplome', 'public');
-            $diplome->fichier = $fichierPath;
-        }
+        // if ($request->file('fichier')) {
+        //     $fichierPath = $request->file('fichier')->store('fichiers/diplome', 'public');
+        //     $diplome->fichier = $fichierPath;
+        // }
         $diplome->libele =  $request->get('libele');
         $diplome->description = $request->get('description');
+        $diplome->fichier = $request->get('fichier');
         $diplome->dateObtention = $request->get('dateObtention');
         $diplome->update();
         // $diplome->update($request->all());

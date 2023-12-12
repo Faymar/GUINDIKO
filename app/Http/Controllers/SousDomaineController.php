@@ -46,6 +46,7 @@ class SousDomaineController extends Controller
         }
         $sousDomaine->nomSousDomaine = $request->input('nomSousDomaine');
         $sousDomaine->description = $request->input('description');
+        $sousDomaine->image = $request->get('image');
         $sousDomaine->domaine_id = $id;
         $sousDomaine->save();
         return response()->json($sousDomaine);

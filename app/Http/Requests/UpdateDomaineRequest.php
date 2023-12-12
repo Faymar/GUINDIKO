@@ -23,7 +23,8 @@ class UpdateDomaineRequest extends FormRequest
     {
         return [
             'nomDomaine' => ['required', 'string', 'max:30'],
-            'description' => ['required', 'string', 'max:250']
+            'description' => ['required', 'string', 'max:250'],
+            'image' => ['required', 'string', 'max:250']
         ];
     }
 }

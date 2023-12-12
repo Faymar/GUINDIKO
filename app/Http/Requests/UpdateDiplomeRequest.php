@@ -22,11 +22,12 @@ class UpdateDiplomeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'libele'=>'required|string',
+            'libele' => 'required|string',
+            'fichier' => 'required|string',
             // 'fichier'=>'nullable|mimes:pdf,doc,docx,png,jpeg,jpg',
-            'description'=>'nullable|string',
-            'dateObtention'=>'required|date',
-            
+            'description' => 'nullable|string',
+            'dateObtention' => 'required|date',
+
         ];
     }
 }
