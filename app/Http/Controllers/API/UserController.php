@@ -10,10 +10,8 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function listeUser()
-    {
-        return response()->json(User::where('estArchive', false)->get());
-    }
+  
+
     public function __construct()
     {
         $this->middleware('auth:sanctum', ['except' => ['login', 'register']]);
