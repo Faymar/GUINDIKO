@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 });
 
 Route::post('/ajouterRoles', [RoleController::class, 'store']);
+Route::post('/ajouterRoles', [RoleController::class, 'store']);
 Route::get('/listerRoles', [RoleController::class, 'index']);
 Route::get('/voirRoles/{role}', [RoleController::class, 'show']);
 Route::patch('/modifierRoles/{role}', [RoleController::class, 'update']);
@@ -94,9 +95,9 @@ Route::get('/afficherSousDomaine/{sousdomaine}', [SousDomaineController::class, 
 Route::patch('/modifierSousDomaine/{sousdomaine}', [SousDomaineController::class, 'update']);
 Route::patch('/supprimerSousDomaine/{sousdomaine}', [SousDomaineController::class, 'destroy']);
 
-Route::post('/ajouterArticle', [ArticleController::class, 'store'])->middleware('auth:sanctum');
+Route::post('/ajouterArticle', [ArticleController::class, 'store']);//->middleware('auth:sanctum')
 Route::get('/listerArticles', [ArticleController::class, 'index']);
-Route::get('/mentor/listerArticles', [ArticleController::class, 'articleMentore'])->middleware('auth:sanctum');
+Route::get('/mentor/listerArticles', [ArticleController::class, 'articleMentore']); //->middleware('auth:sanctum')
 Route::get('/voirArticles/{article}', [ArticleController::class, 'show']);
 Route::patch('/modifierArticles/{article}', [ArticleController::class, 'update']);
 Route::patch('/supprimerArticles/{article}', [ArticleController::class, 'destroy']);

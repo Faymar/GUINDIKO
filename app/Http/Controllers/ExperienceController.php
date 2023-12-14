@@ -49,6 +49,7 @@ class ExperienceController extends Controller
         $experience->description = $request->input('description');
         $experience->entreprise = $request->input('entreprise');
         $experience->tache = $request->input('tache');
+        $experience->fichier = $request->get('fichier');
         $experience->dateDebut = $request->input('dateDebut');
         $experience->dateFin = $request->input('dateFin');
         $experience->user_id = Auth::user()->id;
@@ -105,6 +106,7 @@ class ExperienceController extends Controller
         $experience->description = $request->input('description');
         $experience->entreprise = $request->input('entreprise');
         $experience->tache = $request->input('tache');
+        $experience->fichier = $request->get('fichier');
         $experience->dateDebut = $request->input('dateDebut');
         $experience->dateFin = $request->input('dateFin');
         $experience->update();

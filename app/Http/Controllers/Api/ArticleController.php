@@ -67,7 +67,7 @@ class ArticleController extends Controller
         $article->titre = $request->titre;
         $article->contenu = $request->contenu;
         $article->domaine = $request->domaine;
-        $article->user_id = Auth::user()->id;
+        $article->user_id = 1;
         $article->save();
 
         return response()->json('Article ajouté!!!', $article);

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nomDomaine')->unique();
             $table->string('description');
+            $table->string('image');
             $table->boolean('estArchive')->default(false);
             $table->timestamps();
         });
